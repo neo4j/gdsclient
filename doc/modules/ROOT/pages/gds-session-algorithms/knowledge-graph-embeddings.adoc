@@ -424,6 +424,26 @@ predict_result = gds.kge.model.predict(
 print(predict_result.to_string())
 ----
 
+Metrics will be printed after training stage which is computed on the test set.
+[source, python, role=no-test]
+----
+{'mean_rank': 6.062, 'mean_reciprocal_rank': 0.238, 'hits_at_k': 0.742}
+----
+
+
+Result will be a pandas DataFrame with top 3 tail entities and their scores for each head entity and relationship type.
+
+[source, python, role=no-test]
+----
+   sourceNodeId               rel    targetNodeIdTopK                                                        scoreTopK
+0          8115  REL_RELDIPLOMACY  [8109, 8116, 8118]     [-4.326232433319092, -4.508733749389648, -4.542135715484619]
+1          8115        REL_RELNGO  [8109, 8116, 8117]  [-4.3115034103393555, -4.3574066162109375, -4.5306196212768555]
+2          8116  REL_RELDIPLOMACY  [8109, 8116, 8118]    [-5.225207328796387, -5.367417335510254, -5.4092488288879395]
+3          8116        REL_RELNGO  [8109, 8116, 8117]      [-4.960464954376221, -4.990216255187988, -5.14272403717041]
+4          8119  REL_RELDIPLOMACY  [8109, 8120, 8116]    [-4.9556193351745605, -5.094477653503418, -5.164356708526611]
+5          8119        REL_RELNGO  [8109, 8116, 8117]    [-3.9914486408233643, -4.040783882141113, -4.112575054168701]
+----
+
 There is also a function to score the triplets.
 
 [source, python, role=no-test]
@@ -437,4 +457,13 @@ scores = gds.kge.model.score_triplets(
     model_name=model_name,
     triplets=triplets,
 )
+----
+
+Result will be a dataframe with score for each triplet.
+
+[source, python, role=no-test]
+----
+   sourceNodeId               rel  targetNodeId     score
+0          8115        REL_RELNGO          8116 -4.357407
+1          8115  REL_RELDIPLOMACY          8119 -5.142065
 ----
