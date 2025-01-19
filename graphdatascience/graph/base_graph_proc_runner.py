@@ -237,6 +237,7 @@ class BaseGraphProcRunner(UncallableNamespace, IllegalAttrChecker):
         params = CallParameters(
             graph_name=graph_name, node_count=node_count, average_degree=average_degree, config=config
         )
+        params.ensure_job_id_in_config()
 
         result = self._query_runner.call_procedure(
             endpoint=self._namespace,
@@ -263,6 +264,8 @@ class BaseGraphProcRunner(UncallableNamespace, IllegalAttrChecker):
             relationship_filter=relationship_filter,
             config=config,
         )
+        params.ensure_job_id_in_config()
+
         result = self._query_runner.call_procedure(
             endpoint=self._namespace,
             logging=True,
