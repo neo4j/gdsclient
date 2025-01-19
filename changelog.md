@@ -15,6 +15,7 @@
 ## Improvements
 
 * Display progress bar for remote projection and open-ended tasks.
+* Improve progress bar by showing currently running task.
 
 
 ## Other changes
